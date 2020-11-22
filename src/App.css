@@ -1,38 +1,193 @@
-.App {
+/*   Fonts   */
+@font-face {
+  src: url("./THEROOTS.TTF");
+  font-family: "The Roots";
+}
+
+.row{
+    margin: 0!important;
+}
+
+/*   Start-Screen   */
+.start {
+  width: 100%;
+  height: 100vh;
+}
+.start p {
+  width: 100%;
+  height: 15%;
   text-align: center;
+  color: rgb(192, 192, 192);
+  font-family: monospace;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  width: 100%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title h1 {
+  font-family: The Roots;
+  font-size: 25px;
+  margin-top: 20%;
+}
+.tag-name {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  justify-content: center;
+}
+.tag-name h2 {
+  color: rgb(192, 192, 192);
+  font-size: 15px;
+  font-family: monospace;
+  margin: 0;
+}
+.s-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 35%;
+}
+.s-buttons .btn {
+  width: 200px;
+  margin: 10px;
+}
+.wf {
+  background-color: #fff;
+  border: 1px solid black;
+  box-shadow: none;
+}
+.cf {
+  background-color: black;
+  box-shadow: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/*   SideNAv   */
+.sidenav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.top-nav {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidenav img {
+  margin: 0 !important;
+}
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+.stats p {
+  margin: 0;
+  margin-left: 10px;
+}
+.info {
   display: flex;
   flex-direction: column;
+}
+.info span {
+  height: 20px;
+}
+.photo,
+.photo img {
+  width: 100px;
+  height: 100px;
+}
+.name {
+  margin-top: 0px !important;
+}
+.top-part {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.feather-x {
+  position: absolute;
+  left: -40vw;
+}
+.feather-more-vertical {
+  position: absolute;
+  left: 35vw;
+}
+.edit-section {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  margin-top: 70px;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.edit-section p {
+  margin: 0;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+.bottom-part {
+  margin-top: 70px;
+}
+.bottom-part span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 30px;
+}
+.bottom-part span p {
+  margin: 0;
+  margin-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+/*   Login form   */
+.l-form h1{
+    margin-top: -5%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 40px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.l-form {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.l-form form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.l-form input{
+    text-align: center;
+    margin: 0!important;
+}
+.l-form .row{
+    margin: 0!important;
+}
+.l-form button{
+    background-color: black;
+    box-shadow: none;
+    margin-top: 30px;
+    width: 100px;
+}
+.l-form a{
+    margin-top: 10px;
 }
