@@ -4,8 +4,8 @@
   font-family: "The Roots";
 }
 
-.row{
-    margin: 0!important;
+.row {
+  margin: 0 !important;
 }
 
 /*   Start-Screen   */
@@ -70,7 +70,7 @@
   box-shadow: none;
 }
 
-/*   SideNAv   */
+/*   Side Nav   */
 .sidenav {
   width: 100%;
   display: flex;
@@ -81,7 +81,13 @@
   height: 80px;
   display: flex;
   align-items: center;
-  padding-left: 40px;
+  position: fixed;
+  z-index: 10;
+  background-color: #fff;
+  width: 100vw;
+}
+.sidenav-trigger {
+  margin-left: 40px;
 }
 .sidenav img {
   margin: 0 !important;
@@ -140,7 +146,7 @@
   margin-left: 10px;
 }
 .bottom-part {
-  margin-top: 70px;
+  margin-top: 11rem;
 }
 .bottom-part span {
   display: flex;
@@ -155,11 +161,11 @@
 }
 
 /*   Login form   */
-.l-form h1{
-    margin-top: -5%;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 40px;
+.l-form h1 {
+  margin-top: -5%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
 }
 .l-form {
   width: 100%;
@@ -167,27 +173,85 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+.l-form form {
+  width: 70% !important;
+  height: 50%;
+  margin: auto;
+}
+.l-form input {
+  text-align: center;
+  margin: 0 !important;
+}
+.l-form .row {
+  margin: 0 !important;
+}
+.l-form button {
+  background-color: black;
+  box-shadow: none;
+  margin-top: 30px;
+  width: 170px;
+}
+.l-form a {
+  margin-top: 10px;
+}
+.l-form .box-1 {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 45%;
+  width: 100%;
 }
-.l-form form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.l-form img {
+  height: 150px;
+  margin-bottom: 5px;
+  stroke: 1.5;
 }
-.l-form input{
-    text-align: center;
-    margin: 0!important;
+.l-form h1 {
+  margin: 0;
 }
-.l-form .row{
-    margin: 0!important;
+.l-form .inputs {
+  height: 40%;
 }
-.l-form button{
-    background-color: black;
-    box-shadow: none;
-    margin-top: 30px;
-    width: 100px;
+.l-form .box-2 {
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.l-form a{
-    margin-top: 10px;
+.l-form .feather-arrow-left {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+/*   Home Screen   */
+.home {
+  position: relative;
+  height: 100vh;
+}
+iframe {
+  width: 100vw;
+  height: 99vh;
+}
+.request {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width: 95%;
+  height: 300px;
+  left: 12px;
+  top: 90px;
+  padding: 5%;
+}
+.request form .input-field{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 5px;
+}
+.request form svg{
+  margin-right: 15px;
 }

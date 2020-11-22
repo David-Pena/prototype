@@ -12,10 +12,10 @@ const Start = () => {
         <h2>The job in your pocket</h2>
       </div>
       <div className="s-buttons">
-        <Link className="waves-effect waves-light black-text btn wf" to="/wl-form">
+        <Link className="waves-effect waves-dark white black-text white btn wf" to="/wl-form">
           Enter as Worker
         </Link>
-        <Link className="waves-effect waves-light btn cf" to="/cl-form">
+        <Link className="waves-effect waves-light black btn cf" to="/cl-form">
           Enter as Client
         </Link>
       </div>
