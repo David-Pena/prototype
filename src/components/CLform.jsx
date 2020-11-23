@@ -1,64 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { db } from '../firebase.js';
-=======
 import Client from "./client.svg";
->>>>>>> f42e11d660877766e44871ef80e7193cf74139a3
+import { db, auth } from "../firebase"
+import { useForm } from "react-hook-form"
 
 const CLform = () => {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit } = useForm()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    db.collection('clients').add({
-      email: email,
-      password: password
-    })
-    .then(() => {
-      alert('Sign in SUCCESSFULLY')
-    })
-    .catch((error) => {
-      alert(error.message)
-    })
-
-    setEmail('')
-    setPassword('')
+  const onSubmit = (info, evt) => {
+    evt.preventDefault();
+    auth.createUserWithEmailAndPassword(info.email, info.password)
+        .then((res) => alert('Signed up completed'))
+    // db.collection('clients').add({
+    //   email: info.email,
+    //   password: info.password
+    // })
+    // .then(() => {
+    //   alert('Sign in SUCCESSFULLY')
+    // })
+    // .catch((error) => {
+    //   alert(error.message)
+    // })
+    // evt.target.reset();
   }
 
   return (
     <div className="row l-form">
-<<<<<<< HEAD
-      <h1>Client Login</h1>
-      <form className="col s12" onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              id="email"
-              type="email"
-              value = {email}
-              className="validate"
-              placeholder="Email"
-              autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="input-field col s12">
-            <input
-              id="password"
-              type="password"
-              value={password}
-              className="validate"
-              placeholder="Password"
-              autoComplete="off"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-=======
       <Link to="/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,30 +48,35 @@ const CLform = () => {
         <img src={Client} alt="" />
         <h1 className="black-text">Login</h1>
       </div>
-      <form className="col s12">
+      <form className="col s12" onSubmit={handleSubmit(onSubmit)}>
         <div className="inputs">
           <div className="row">
             <div className="input-field col s12">
               <input
-                id="email"
+                name="email"
                 type="email"
                 className="validate"
                 placeholder="Email"
                 autoComplete="off"
+                ref={register({
+                  required: { value: true, message: "Field Required"},
+                })}
               />
             </div>
           </div>
           <div className="row">
             <div className="input-field col s12">
               <input
-                id="password"
+                name="password"
                 type="password"
                 className="validate"
                 placeholder="Password"
                 autoComplete="off"
+                ref={register({
+                  required: { value: true, message: "Field Required"},
+                })}
               />
             </div>
->>>>>>> f42e11d660877766e44871ef80e7193cf74139a3
           </div>
         </div>
         <div className="box-2">
