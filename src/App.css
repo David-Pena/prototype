@@ -71,7 +71,7 @@
 }
 
 /*   Side Nav   */
-.sidenav {
+.sidenav, .edit-nav{
   width: 100%;
   display: flex;
   align-items: center;
@@ -85,11 +85,14 @@
   z-index: 10;
   background-color: #fff;
   width: 100vw;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
+  box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
 }
 .sidenav-trigger {
   margin-left: 40px;
 }
-.sidenav img {
+.sidenav img , .edit-nav{
   margin: 0 !important;
 }
 .stats {
@@ -158,6 +161,21 @@
 .bottom-part span p {
   margin: 0;
   margin-left: 10px;
+}
+
+/*   Edit Side Nav   */
+.edit-nav .user-view{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+}
+.edit-nav .bottom-part{
+  margin-top: 100px;
+}
+.file-field span svg{
+  margin-top: 8px;
 }
 
 /*   Login form   */
@@ -241,17 +259,20 @@ iframe {
   position: absolute;
   width: 95%;
   height: 300px;
-  left: 12px;
+  left: 11px;
   top: 90px;
   padding: 5%;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
+  box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 1);
 }
-.request form .input-field{
+.request form .input-field {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   margin: 5px;
 }
-.request form svg{
+.request form svg {
   margin-right: 15px;
 }
