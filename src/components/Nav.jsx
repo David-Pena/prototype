@@ -1,8 +1,31 @@
 import React from "react";
+// import { useEffect, useState } from 'react'
 import Img from "./img.jpg";
 import {Link} from "react-router-dom"
+// import { db } from '../firebase'
+import { firebaseApp } from '../firebase';
+
 
 const Nav = () => {
+
+  // const [items, setItems] = useState([])
+
+  // useEffect(() => {
+  //   db.collection('clients').get().then((snapShots) => {
+  //     setItems({
+  //       items: snapShots.docs.map(doc => {
+  //         return doc.data()
+  //       })
+  //     })
+  //   })
+  // }, [])
+
+  // console.log(items.items)
+
+  const handleLogout = () => {
+    firebaseApp.auth().signOut();
+  }
+
   return (
     <div className="nav">
       <ul id="slide-out" className="sidenav">
@@ -44,10 +67,12 @@ const Nav = () => {
         <li>
           <div className="user-view center-align">
             <a className="photo">
-              <img src={Img} />
+              <img src={Img} alt=""/>
             </a>
             <a>
-              <span className="name black-text">John Doe</span>
+              <span className="name black-text">
+                { localStorage.getItem('name') }
+              </span>
             </a>
             <a>
               <span className="stats">
@@ -64,13 +89,17 @@ const Nav = () => {
                 >
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>{" "}
-                <p className="black-text">5.0</p>
-                <p className="grey-text">(500)</p>
+                <p className="black-text">N e w</p>
+                <p className="grey-text">(0)</p>
               </span>
             </a>
             <a className="info">
-              <span className="grey-text">30192020</span>
-              <span className="grey-text">Barranquilla</span>
+              <span className="grey-text">
+                { localStorage.getItem('cellphone')}
+              </span>
+              <span className="grey-text">
+                { localStorage.getItem('city') }
+              </span>
             </a>
           </div>
         </li>
@@ -95,6 +124,9 @@ const Nav = () => {
           <a className="waves-effect waves-light black-text btn wf">
             Enter as Worker
           </a>
+          <div className="sign-out">
+            <Link to="/" className="grey-text" onClick={handleLogout}>Sign Out</Link>
+          </div>
         </li>
         <li>
           <div className="bottom-part">

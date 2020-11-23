@@ -1,29 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Client from "./client.svg";
-import { db, auth } from "../firebase"
-import { useForm } from "react-hook-form"
+import Home from "./Home"
+// import { db, auth } from "../firebase"
+import { firebaseApp } from '../firebase';
+// import { useForm } from "react-hook-form"
 
 const CLform = () => {
 
-  const { register, handleSubmit } = useForm()
+  const [user, setUser] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+  const [hasAccount, setHasAccount] = useState(false)
 
-  const onSubmit = (info, evt) => {
-    evt.preventDefault();
-    auth.createUserWithEmailAndPassword(info.email, info.password)
-        .then((res) => alert('Signed up completed'))
-    // db.collection('clients').add({
-    //   email: info.email,
-    //   password: info.password
-    // })
-    // .then(() => {
-    //   alert('Sign in SUCCESSFULLY')
-    // })
-    // .catch((error) => {
-    //   alert(error.message)
-    // })
-    // evt.target.reset();
+  const clearInputs = () => {
+    setEmail('')
+    setPassword('')
   }
+
+  const clearErrors = () => {
+    setEmailError('')
+    setPasswordError('')
+  }
+
+  const handleLogin = (evt) => {
+    evt.preventDefault();
+    clearErrors()
+    firebaseApp
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
+      <Home user={user.value}></Home>
+      window.location = "/home"
+    })
+    .catch(err => {
+      switch(err.code){
+        case "auth/invalid-email":
+        case "auth/user-disabled":
+        case "auth/user-not-found":
+          setEmailError(err.message)
+          break
+        case "auth/wrong-password":
+          setPasswordError(err.message)
+          break
+      }
+    })
+  }
+
+  const handleSignUp = (evt) => {
+    evt.preventDefault();
+    clearErrors()
+    firebaseApp
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      // get firebase user id
+      const id = firebaseApp.auth().currentUser
+      localStorage.setItem('id', id.uid)
+      window.location = "/ce-form"
+    })
+    .catch((err) => {
+      switch(err.code) {
+        case "auth/email-already-in-use":
+        case "auth/invalid-email":
+          setEmailError(err.message)
+          break
+        case "auth/weak-password":
+          setPasswordError(err.message)
+          break
+      }
+    })
+  }
+
+  const authListener = () => {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        clearInputs()
+        setUser(user)
+      } else {
+        setUser("")
+      }
+    })
+  }
+
+  useEffect(() => {
+    authListener()
+  }, [])
 
   return (
     <div className="row l-form">
@@ -48,20 +112,20 @@ const CLform = () => {
         <img src={Client} alt="" />
         <h1 className="black-text">Login</h1>
       </div>
-      <form className="col s12" onSubmit={handleSubmit(onSubmit)}>
+      <form className="col s12">
         <div className="inputs">
           <div className="row">
             <div className="input-field col s12">
               <input
                 name="email"
                 type="email"
+                value={email}
                 className="validate"
                 placeholder="Email"
                 autoComplete="off"
-                ref={register({
-                  required: { value: true, message: "Field Required"},
-                })}
+                onChange={(evt) => setEmail(evt.target.value)}
               />
+              <p className="errorMsg">{ emailError }</p>
             </div>
           </div>
           <div className="row">
@@ -69,24 +133,42 @@ const CLform = () => {
               <input
                 name="password"
                 type="password"
+                value={password}
                 className="validate"
                 placeholder="Password"
                 autoComplete="off"
-                ref={register({
-                  required: { value: true, message: "Field Required"},
-                })}
+                onChange={(evt) => setPassword(evt.target.value)}
               />
+              <p className="errorMsg">{ passwordError }</p>
             </div>
           </div>
         </div>
         <div className="box-2">
-          <button
-            className="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-          >
-            Log in
-          </button>
+          {hasAccount ? (
+            <>
+              <button
+              className="btn waves-effect waves-light black"
+              type="submit"
+              name="action"
+              onClick={handleLogin}
+              >
+              Sign in
+              </button>
+              <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
+            </>
+          ) : (
+            <>
+              <button
+              className="btn waves-effect waves-light black"
+              type="submit"
+              name="action"
+              onClick={handleSignUp}
+              >
+              Sign Up
+              </button>
+              <p>Have an account ? <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span></p>
+            </>
+          )}          
         </div>
       </form>
     </div>
