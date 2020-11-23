@@ -1,5 +1,6 @@
 import React from "react";
 import Img from "./img.jpg";
+import {Link} from "react-router-dom"
 
 const Nav = () => {
   return (
@@ -89,7 +90,7 @@ const Nav = () => {
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
             </svg>
-            <p className="grey-text">Edit Information</p>
+            <Link to="/ce-form" className="grey-text">Edit Information</Link>
           </div>
           <a className="waves-effect waves-light black-text btn wf">
             Enter as Worker
